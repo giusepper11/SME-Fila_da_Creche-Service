@@ -1,0 +1,8 @@
+[submodule "SME-fila-da-creche-API"]
+	path = SME-fila-da-creche-API
+	url = https://github.com/prefeiturasp/SME-fila-da-creche-API.git
+	branch = fix_rules_1019
+[submodule "SME-FilaDaCreche"]
+	path = SME-FilaDaCreche
+	url = https://github.com/prefeiturasp/SME-FilaDaCreche.git
+	branch = fix_rules_1019
