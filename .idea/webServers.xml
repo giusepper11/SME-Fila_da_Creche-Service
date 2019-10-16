@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="af5c507f-b934-4b00-aeb5-2c5366d0c392" name="devos" url="http://127.0.1.1">
+        <fileTransfer host="127.0.1.1" port="22" rootFolder="/home/gro/projetos/fila-creche" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="Fila_Creche_DEV" uuid="57c0f57d-5f35-4172-ba42-6565c4151f9d">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.1.1:5433/postgres</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Fila_Creche_PROD" uuid="79a276f4-2bd4-416a-9b85-c1fb3b0fb011">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://chibarro:5433/postgres</jdbc-url>
+    </data-source>
+  </component>
+</project>

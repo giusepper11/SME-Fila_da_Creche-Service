@@ -1,0 +1,76 @@
+version: '3'
+
+services:
+
+  db:
+    image: mdillon/postgis
+    env_file:
+      - ./SME-fila-da-creche-API/env_file
+    networks:
+      - db_nw
+    ports:
+      - "5433:5432"
+
+  flaskapp:
+    build: ./SME-fila-da-creche-API/.
+    env_file:
+      - ./SME-fila-da-creche-API/env_file
+    networks:
+      - db_nw
+      - web_nw
+    volumes:
+      - ./SME-fila-da-creche-API/:/opt/services/flaskapp/src
+    depends_on:
+      - db
+
+  migration:
+    build: ./SME-fila-da-creche-API/.
+    command: python migrate.py
+    env_file:
+      - ./SME-fila-da-creche-API/env_file
+    volumes:
+      - ./SME-fila-da-creche-API/:/opt/services/flaskapp/src
+    networks:
+      - db_nw
+      - web_nw
+    depends_on:
+      - db
+
+  maps:
+    image: klokantech/osmnames-sphinxsearch
+    ports:
+      - 777:80
+    volumes:
+      - ./SME-fila-da-creche-API/map_data/index:/data/index
+      - ./SME-fila-da-creche-API/map_data/input:/data/input
+    networks:
+      - web_nw
+
+  nginx:
+    image: "nginx:1.13.5"
+    ports:
+      - "8080:80"
+    volumes:
+      - ./SME-fila-da-creche-API/conf.d:/etc/nginx/conf.d
+    networks:
+      - db_nw
+    depends_on:
+      - flaskapp
+
+  front-end:
+    build:
+      context: ./SME-FilaDaCreche/
+      dockerfile: Dockerfile
+    env_file:
+      - ./SME-FilaDaCreche/.env
+    ports:
+      - "80:80"
+
+
+networks:
+  db_nw:
+    external:
+      name: fila-da-creche-api-db
+  web_nw:
+    external:
+      name: fila-da-creche-api-web
