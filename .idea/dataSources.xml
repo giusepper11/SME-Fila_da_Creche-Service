@@ -13,5 +13,11 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://chibarro:5433/postgres</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="FilaCrecheHOM" uuid="fe9bce02-1696-4997-b2e9-4f7cf1e3c38b">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://julussa:5433/postgres</jdbc-url>
+    </data-source>
   </component>
 </project>
