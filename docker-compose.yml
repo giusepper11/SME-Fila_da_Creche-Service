@@ -44,7 +44,7 @@ services:
       - ./SME-fila-da-creche-API/map_data/index:/data/index
       - ./SME-fila-da-creche-API/map_data/input:/data/input
     networks:
-      - web_nw
+      - maps_nw
 
   nginx:
     image: "nginx:1.13.5"
@@ -54,8 +54,10 @@ services:
       - ./SME-fila-da-creche-API/conf.d:/etc/nginx/conf.d
     networks:
       - db_nw
+      - web_nw
     depends_on:
       - flaskapp
+
 
   front-end:
     build:
@@ -63,14 +65,32 @@ services:
       dockerfile: Dockerfile
     env_file:
       - ./SME-FilaDaCreche/.env
+    networks:
+      - external
+
+  nginx_central:
+    image: "nginx:latest"
     ports:
       - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - front-end
+      - nginx
+    networks:
+      - web_nw
+      - external
+      - db_nw
+      - maps_nw
 
 
 networks:
   db_nw:
-    external:
-      name: fila-da-creche-api-db
+    driver: bridge
+  maps_nw:
+    driver: bridge
   web_nw:
-    external:
-      name: fila-da-creche-api-web
+    driver: bridge
+  external:
+    driver: bridge
+
